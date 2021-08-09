@@ -1,0 +1,21 @@
+language: node_js
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
+
+script:
+  - docker --version   # print docker version number
+  - docker-compose -f docker-compose-build.yml build --parallel
+
+after_success:
+  - echo $DOCKER_PASSWORD | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push noreenwu/udagram-api-feed
+
