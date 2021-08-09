@@ -20,5 +20,5 @@ after_success:
   - docker push noreenwu/udagram-api-feed
   - docker push noreenwu/udagram-api-user
   - docker push noreenwu/udagram-frontend:local
-  - docker push noreenwu/udagram-reverseproxy
+  - docker push noreenwu/reverseproxy
 
