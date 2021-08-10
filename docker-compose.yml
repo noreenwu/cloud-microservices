@@ -37,4 +37,4 @@ services:
   frontend:
     image: noreenwu/udagram-frontend:local
     ports:
-      - "8100:80"
+      - "80:80"
