@@ -18,12 +18,7 @@ spec:
       - name: udagram-api-feed
         image: noreenwu/udagram-api-feed
         imagePullPolicy: Always
-        env:
-          - name: UI_PROPERTIES_FILE_NAME
-            valueFrom:
-              configMapKeyRef:
-                name: game-demo
-                key: ui_properties_file_name        
+        env:       
           - name: URL
             valueFrom:
                 configMapKeyRef:
