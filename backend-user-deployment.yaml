@@ -17,6 +17,8 @@ spec:
       containers:
       - name: udagram-api-user
         image: noreenwu/udagram-api-user:v1
+        ports:
+        - containerPort: 8080
         imagePullPolicy: Always
         env:
           - name: URL
@@ -29,6 +31,11 @@ spec:
               configMapKeyRef:
                 name: env-configmap
                 key: AWS_PROFILE
+          - name: AWS_BUCKET_USER
+            valueFrom:
+              configMapKeyRef:
+                name: env-configmap
+                key: AWS_BUCKET_USER                
           - name: AWS_REGION
             valueFrom:
               configMapKeyRef:
