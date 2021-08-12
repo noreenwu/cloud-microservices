@@ -54,7 +54,7 @@ spec:
           - name: POSTGRES_HOST
             valueFrom:
                 configMapKeyRef:
-                  name: env-config
+                  name: env-configmap
                   key: POSTGRES_HOST
           - name: POSTGRES_USERNAME
             valueFrom:
