@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-api-user
-        image: noreenwu/udagram-api-user
+        image: noreenwu/udagram-api-user:latest
         imagePullPolicy: Always
         env:
           - name: URL
@@ -59,5 +59,7 @@ spec:
                 secretKeyRef:
                   name: env-secret
                   key: JWT_SECRET
-        ports:
-        - containerPort: 80
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret
