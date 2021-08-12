@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-api-feed
-        image: noreenwu/udagram-api-feed:latest
+        image: noreenwu/udagram-api-feed:v1
         imagePullPolicy: Always
         resources:
           requests:

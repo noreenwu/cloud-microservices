@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-api-user
-        image: noreenwu/udagram-api-user:latest
+        image: noreenwu/udagram-api-user:v1
         imagePullPolicy: Always
         env:
           - name: URL
