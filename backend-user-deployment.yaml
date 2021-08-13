@@ -51,6 +51,11 @@ spec:
                 configMapKeyRef:
                   name: env-configmap
                   key: POSTGRES_HOST
+          # - name: POSTGRES_USERNAME
+          #   valueFrom:
+          #       secretKeyRef:
+          #         name: env-secret
+          #         key: POSTGRES_USERNAME                  
           - name: POSTGRES_USERNAME
             valueFrom:
                 configMapKeyRef:
