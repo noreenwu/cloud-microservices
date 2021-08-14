@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reverseproxy
+  name: publicreverseproxy
   labels:
-    service: reverseproxy  
+    service: publicreverseproxy  
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: reverseproxy
+      service: publicreverseproxy
   template:
     metadata:
       labels:
-        service: reverseproxy
+        service: publicreverseproxy
     spec:
       containers:
       - image: noreenwu/reverseproxy
-        name: reverseproxy
+        name: publicreverseproxy
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080      
+        - containerPort: 8080
         resources:
           requests:
             memory: "64Mi"
