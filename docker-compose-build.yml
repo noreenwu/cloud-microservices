@@ -15,4 +15,4 @@ services:
   frontend:
     build:
       context: ./udagram-frontend
-    image: noreenwu/udagram-frontend:v5
+    image: noreenwu/udagram-frontend:v6
