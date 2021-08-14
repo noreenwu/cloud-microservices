@@ -1,7 +1,7 @@
 version: "3"
 services:
   reverseproxy:
-      image: noreenwu/reverseproxy
+      image: noreenwu/reverseproxy:v7
       ports:
           - 8080:8080
       restart: always
@@ -9,7 +9,7 @@ services:
         - backend-user
         - backend-feed
   backend-user:
-    image: noreenwu/udagram-api-user
+    image: noreenwu/udagram-api-user:v7
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD 
@@ -21,7 +21,7 @@ services:
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
   backend-feed:
-    image: noreenwu/udagram-api-feed
+    image: noreenwu/udagram-api-feed:v7
     volumes:
       - $HOME/.aws:/root/.aws
     environment:
@@ -35,6 +35,6 @@ services:
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
   frontend:
-    image: noreenwu/udagram-frontend:v6
+    image: noreenwu/udagram-frontend:v7
     ports:
       - "80:80"

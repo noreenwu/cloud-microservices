@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   name: reverseproxy
   labels:
-    service: reverseproxy  
+    app: reverseproxy  
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: reverseproxy
+      app: reverseproxy
   template:
     metadata:
       labels:
-        service: reverseproxy
+        app: reverseproxy
     spec:
       containers:
-      - image: noreenwu/reverseproxy
+      - image: noreenwu/reverseproxy:v7
         name: reverseproxy
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080      
+        - containerPort: 8080
         resources:
           requests:
             memory: "64Mi"
