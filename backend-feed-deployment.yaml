@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-api-feed
-        image: noreenwu/udagram-api-feed:v7
+        image: noreenwu/udagram-api-feed:v16
         ports:
         - containerPort: 8080        
         imagePullPolicy: Always
@@ -33,6 +33,11 @@ spec:
                 configMapKeyRef:
                   name: env-configmap
                   key: URL
+          - name: AWS_BUCKET
+            valueFrom:
+              configMapKeyRef:
+                name: env-configmap
+                key: AWS_BUCKET
           - name: AWS_BUCKET_FEED
             valueFrom:
               configMapKeyRef:
@@ -73,6 +78,11 @@ spec:
                 configMapKeyRef:
                   name: env-configmap
                   key: JWT_SECRET
+          - name: OTHER_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: env-secret
+                key: OTHER_SECRET
       volumes:
       - name: aws-secret
         secret:
