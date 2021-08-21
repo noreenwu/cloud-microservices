@@ -21,7 +21,7 @@ services:
       JWT_SECRET: $JWT_SECRET
       URL: "ab22489b0b74a48dc98421741fce8bd8-1175957389.us-east-2.elb.amazonaws.com"
   backend-feed:
-    image: noreenwu/udagram-api-feed:v16
+    image: noreenwu/udagram-api-feed:v22
     volumes:
       - $HOME/.aws:/root/.aws
     environment:
@@ -31,7 +31,7 @@ services:
       POSTGRES_HOST: $POSTGRES_HOST
       AWS_REGION: $AWS_REGION
       AWS_PROFILE: $AWS_PROFILE 
-      AWS_BUCKET: $AWS_BUCKET_FEED
+      AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "ab22489b0b74a48dc98421741fce8bd8-1175957389.us-east-2.elb.amazonaws.com"
   frontend:

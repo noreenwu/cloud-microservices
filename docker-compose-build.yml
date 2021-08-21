@@ -11,7 +11,7 @@ services:
   backend_feed:
     build:
       context: ./udagram-api-feed
-    image: noreenwu/udagram-api-feed:v16
+    image: noreenwu/udagram-api-feed:v22
   frontend:
     build:
       context: ./udagram-frontend
