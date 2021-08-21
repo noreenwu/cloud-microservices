@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-api-feed
-        image: noreenwu/udagram-api-feed:v16
+        image: noreenwu/udagram-api-feed:v22
         ports:
         - containerPort: 8080        
         imagePullPolicy: Always
@@ -28,62 +28,67 @@ spec:
             memory: "2048Mi"
             cpu: "500m"            
         env:       
-          - name: URL
-            valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: URL
-          - name: AWS_BUCKET
-            valueFrom:
+        - name: URL
+          valueFrom:
               configMapKeyRef:
                 name: env-configmap
-                key: AWS_BUCKET
-          - name: AWS_BUCKET_FEED
-            valueFrom:
+                key: URL
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_BUCKET
+        - name: AWS_BUCKET_FEED
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_BUCKET_FEED
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_PROFILE
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_REGION
+        - name: POSTGRES_DB
+          valueFrom:
               configMapKeyRef:
                 name: env-configmap
-                key: AWS_BUCKET_FEED
-          - name: AWS_PROFILE
-            valueFrom:
+                key: POSTGRES_DB
+        - name: POSTGRES_HOST
+          valueFrom:
               configMapKeyRef:
                 name: env-configmap
-                key: AWS_PROFILE
-          - name: AWS_REGION
-            valueFrom:
+                key: POSTGRES_HOST
+        - name: POSTGRES_USERNAME
+          valueFrom:
               configMapKeyRef:
                 name: env-configmap
-                key: AWS_REGION
-          - name: POSTGRES_DB
-            valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: POSTGRES_DB
-          - name: POSTGRES_HOST
-            valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: POSTGRES_HOST
-          - name: POSTGRES_USERNAME
-            valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: POSTGRES_USERNAME
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: POSTGRES_PASSWORD
-          - name: JWT_SECRET
-            valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: JWT_SECRET
-          - name: OTHER_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: env-secret
-                key: OTHER_SECRET
+                key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+              configMapKeyRef:
+                name: env-configmap
+                key: POSTGRES_PASSWORD
+        - name: JWT_SECRET
+          valueFrom:
+              configMapKeyRef:
+                name: env-configmap
+                key: JWT_SECRET
+        - name: OTHER_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: OTHER_SECRET
+        volumeMounts:
+        - name: aws-secret
+          mountPath: "/root/.aws/"
+          readOnly: true        
+      restartPolicy: Always
       volumes:
       - name: aws-secret
         secret:
-          secretName: aws-secret
+          secretName: aws-secret                   
