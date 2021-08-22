@@ -38,7 +38,8 @@ kubectl describe hpa
 ```bash
 kubectl logs <pod-name>
 ```
-> udagram-feed-logs.png
+> kubectl-logs-pod-1.png,
+> kubectl-logs-pod-2.png
 
 ### Shows front-end accessing application in Kubernetes
 > front-end-running-with-k8s.png
