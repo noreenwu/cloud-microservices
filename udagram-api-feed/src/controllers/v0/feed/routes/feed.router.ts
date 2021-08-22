@@ -4,8 +4,10 @@ import {NextFunction} from 'connect';
 import * as jwt from 'jsonwebtoken';
 import * as AWS from '../../../../aws';
 import * as c from '../../../../config/config';
+const { v4: uuidv4 } = require('uuid');
 
 const router: Router = Router();
+const pid = uuidv4();
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
   if (!req.headers || !req.headers.authorization) {
@@ -28,12 +30,14 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
 
 // Get all feed items
 router.get('/', async (req: Request, res: Response) => {
+  console.log(new Date().toLocaleDateString() + `: ${pid}` + ' began processing request to get feed');
   const items = await FeedItem.findAndCountAll({order: [['id', 'DESC']]});
   items.rows.map((item) => {
     if (item.url) {
       item.url = AWS.getGetSignedUrl(item.url);
     }
   });
+  console.log(new Date().toLocaleDateString() + `: ${pid}` + ' finished processing request to get feed');
   res.send(items);
 });
 
@@ -58,6 +62,8 @@ router.get('/signed-url/:fileName',
 router.post('/',
     requireAuth,
     async (req: Request, res: Response) => {
+      console.log(new Date().toLocaleDateString() + `: ${pid}` + ' begin processing request post file');
+
       const caption = req.body.caption;
       const fileName = req.body.url; // same as S3 key name
 
@@ -77,6 +83,7 @@ router.post('/',
       const savedItem = await item.save();
 
       savedItem.url = AWS.getGetSignedUrl(savedItem.url);
+      console.log(new Date().toLocaleDateString() + `: ${pid}` + ' finished processing request post file');
       res.status(201).send(savedItem);
     });
 
