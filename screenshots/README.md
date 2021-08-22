@@ -1,25 +1,46 @@
 # Screenshots
-To help review your infrastructure, please include the following screenshots in this directory::
+The following screenshots are available in this directory:
 
 ## Deployment Pipeline
-* DockerHub showing containers that you have pushed
-* GitHub repository’s settings showing your Travis webhook (can be found in Settings - Webhook)
-* Travis CI showing a successful build and deploy job
+### DockerHub shows containers pushed
+> dockerhub-images.png
+  
+### Integration between Travis and Github
+> travis-github-integration.png
+
+### Travis CI successful build and deploy job
+> successful-travis-build.png
 
 ## Kubernetes
-* To verify Kubernetes pods are deployed properly
+
+### Shows running pods and udagram-api-user has 2 replicas running:
 ```bash
 kubectl get pods
 ```
-* To verify Kubernetes services are properly set up
+> udagram-api-user-has-2-replicas.png
+
+
+### Shows Kubernetes services
 ```bash
 kubectl describe services
 ```
-* To verify that you have horizontal scaling set against CPU usage
+> kubectl-describe-services.png,
+> kubectl-get-services.png
+
+### Shows horizontal scaling set against CPU usage
 ```bash
 kubectl describe hpa
 ```
-* To verify that you have set up logging with a backend application
+> kubectl-hpa-describe.png, 
+> kubectl-hpa-config.png
+
+### Shows logging of udagram-api-feed
 ```bash
-kubectl logs {pod_name}
+kubectl logs <pod-name>
 ```
+> udagram-feed-logs.png
+
+### Shows front-end accessing application in Kubernetes
+> front-end-running-with-k8s.png
+
+
